@@ -25,13 +25,19 @@ function draw(e) {
   if (firstLine) {
     ctx.beginPath()
     ctx.moveTo(rect.left, rect.top)
-    ctx.lineTo(e.clientX, e.clientY)
+    e.changedTouches
+      ? ctx.lineTo(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      : ctx.lineTo(e.clientX, e.clientY)
     firstLine = false
   } else {
-    ctx.lineTo(e.clientX, e.clientY)
+    e.changedTouches
+      ? ctx.lineTo(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      : ctx.lineTo(e.clientX, e.clientY)
     ctx.stroke()
     ctx.beginPath()
-    ctx.moveTo(e.clientX, e.clientY)
+    e.changedTouches
+      ? ctx.moveTo(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      : ctx.moveTo(e.clientX, e.clientY)
   }
 }
 
